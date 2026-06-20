@@ -19,9 +19,8 @@ jobs:
       - name: Verify files
         run: |
           test -f index.html
-          test -f currencyapp.css
-          test -f currencyapp.js
-          test -f currency_code.js
+          test -f style.css
+          test -f app.js
 
       - name: Success
         run: echo "Project checked successfully"
