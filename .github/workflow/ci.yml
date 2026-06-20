@@ -1,0 +1,27 @@
+name: Simon Game CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check project files
+        run: |
+          test -f index.html || (echo "index.html missing" && exit 1)
+          test -f style.css || (echo "style.css missing" && exit 1)
+          test -f app.js || (echo "app.js missing" && exit 1)
+
+      - name: Validate JavaScript syntax
+        run: node --check app.js
+
+      - name: CI Passed
+        run: echo "All checks passed successfully!"
